@@ -23,43 +23,43 @@
 
                 <!-- Formulário de Registro -->
                 <form class="form" action="{{ route('registrar') }}" method="POST">
-                    @csrf <!-- Token de segurança -->
+                    @csrf
                     
                     <!-- Nome -->
                     <label class="label-input" for="nome">
                         <i class="far fa-user icon-modify"></i>
                         <input type="text" name="nome" value="{{ old('nome') }}" placeholder="Nome">
-                        @error('nome')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
                     </label>
+                    @error('nome')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
 
                     <!-- Sobrenome -->
                     <label class="label-input" for="sobrenome">
                         <i class="far fa-user icon-modify"></i>
                         <input type="text" name="sobrenome" value="{{ old('sobrenome') }}" placeholder="Sobrenome">
-                        @error('sobrenome')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
                     </label>
+                    @error('sobrenome')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
 
                     <!-- Email -->
                     <label class="label-input" for="email">
                         <i class="far fa-envelope icon-modify"></i>
                         <input type="email" name="email" value="{{ old('email') }}" placeholder="Email">
-                        @error('email')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
                     </label>
+                    @error('email')
+                            <span class="error">{{ $message }}</span>
+                    @enderror
 
                     <!-- Senha -->
                     <label class="label-input" for="senha">
                         <i class="fas fa-lock icon-modify"></i>
                         <input type="password" name="senha" placeholder="Senha">
-                        @error('senha')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
                     </label>
+                    @error('senha')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
 
                     <!-- Confirmar Senha -->
                     <label class="label-input" for="senha_confirmation">
