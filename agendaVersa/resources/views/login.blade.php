@@ -85,7 +85,7 @@
                 <p class="description description-second">Use seu e-mail para acesso</p>
 
                 <!-- Formulário de Login -->
-                <form class="form" action="" method="POST">
+                <form class="form" action="{{ route('logar') }}" method="POST">
                     @csrf
                     <!-- Email -->
                     <label class="label-input" for="email">
@@ -96,11 +96,11 @@
                         <span class="error">{{ $message }}</span>
                     @enderror
                     <!-- Senha -->
-                    <label class="label-input" for="password">
+                    <label class="label-input" for="senha">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" name="password" placeholder="Senha">
+                        <input type="password" name="senha" placeholder="Senha">
                     </label>
-                    @error('password')
+                    @error('senha')
                             <span class="error">{{ $message }}</span>
                     @enderror
 
