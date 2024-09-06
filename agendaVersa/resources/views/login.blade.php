@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
@@ -49,7 +50,7 @@
                         <input type="email" name="email" value="{{ old('email') }}" placeholder="Email">
                     </label>
                     @error('email')
-                            <span class="error">{{ $message }}</span>
+                        <span class="error">{{ $message }}</span>
                     @enderror
 
                     <!-- Senha -->
@@ -86,24 +87,22 @@
                 <!-- Formulário de Login -->
                 <form class="form" action="" method="POST">
                     @csrf
-
                     <!-- Email -->
                     <label class="label-input" for="email">
                         <i class="far fa-envelope icon-modify"></i>
                         <input type="email" name="email" placeholder="Email">
-                        @error('email')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
                     </label>
-
+                    @error('email')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
                     <!-- Senha -->
                     <label class="label-input" for="password">
                         <i class="fas fa-lock icon-modify"></i>
                         <input type="password" name="password" placeholder="Senha">
-                        @error('password')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
                     </label>
+                    @error('password')
+                            <span class="error">{{ $message }}</span>
+                    @enderror
 
                     <a class="password" href="#">Esqueceu a senha?</a>
                     <button class="btn btn-second">Entrar</button>
@@ -111,6 +110,32 @@
             </div>
         </div>
     </div>
+    
+
     <script src="{{ url('assets/js/app.js') }}"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: '{{ session('success') }}',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+    
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: '{{ $error }}',
+                        confirmButtonText: 'OK'
+                    });
+                @endforeach
+            @endif
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

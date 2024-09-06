@@ -45,6 +45,8 @@ class RegistroController extends Controller
             'email' => $request->email,
             'senha' => Hash::make($request->senha),
             ]);
+
+            return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso.');
         }
     }
 }
