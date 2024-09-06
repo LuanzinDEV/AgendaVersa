@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
-class UsuarioModel extends Model
+class UsuarioModel extends Authenticatable
 {
-    protected $table = 'usuario';
-    public $timestamps = false; 
+    use HasFactory;
 
+    protected $table = 'usuario';
+    public $timestamps = false;
 
     protected $fillable = [
         'nome',
@@ -19,8 +20,13 @@ class UsuarioModel extends Model
         'senha'
     ];
 
+    protected $hidden = [
+        'senha',
+    ];
+
     public function verificarSenha($senha)
     {
         return Hash::check($senha, $this->senha);
     }
 }
+

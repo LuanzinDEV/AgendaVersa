@@ -1,10 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController; 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistroController;
 
+// Página de login
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::post('/registrar', [RegistroController::class, 'create'])->name('registrar');
+
+// Processa o login
 Route::post('/login', [LoginController::class, 'validaLogin'])->name('logar');
-Route::get('/home', [LoginController::class, 'home'])->name('home');
+
+// Processa o registro
+Route::post('/registrar', [RegistroController::class, 'create'])->name('registrar');
+
+// Página inicial após o login, exibindo o calendário
+Route::get('/home', [HomeController::class, 'showCalendar'])->name('home');
+
+

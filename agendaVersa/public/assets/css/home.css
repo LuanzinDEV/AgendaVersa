@@ -1,0 +1,232 @@
+body {
+    width: 60%;
+    margin: 50px auto;
+    background-color: lightgray;
+    font-family: 'Kanit', sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .calendar-base {
+    width: 70%;
+    height: 500px;
+    border-radius: 20px;
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .year {
+    color: #E8E8E8;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .triangle-left, .triangle-right {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    position: absolute;
+    top: 20px;
+  }
+  
+  .triangle-left {
+    border-right: 10px solid #E8E8E8;
+    right: 60px;
+  }
+  
+  .triangle-right {
+    border-left: 10px solid #E8E8E8;
+    right: 30px;
+  }
+  
+  .triangle-left:hover {
+    border-right: 10px solid #2ECC71;
+  }
+  
+  .triangle-right:hover {
+    border-left: 10px solid #2ECC71;
+  }
+  
+  .months {
+    color: #AAAAAA;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  
+  .month-hover {
+    margin: 0 10px; /* Espaçamento entre os meses */
+    cursor: pointer; /* Adiciona cursor pointer para interação */
+  }
+  
+  .month-color {
+    color: #27AE60; /* Destaca o mês atual com uma cor verde */
+    font-weight: bold; /* Pode adicionar negrito ou outro estilo */
+  }
+  
+  .month-hover:hover {
+    color: #27e879 !important; /* Estilo ao passar o mouse sobre os meses */
+  }
+  
+  .month-line {
+    border-color: #E8E8E8;
+    width: 90%;
+  }
+  
+  .day {
+    color: #AAAAAA;
+    font-size: 18px;
+    font-weight: 600;
+    justify-content: center;
+    width: calc(100% / 7); /* Ajusta o tamanho para 7 colunas */
+    margin: 5px 0;
+    text-align: center;
+    cursor: pointer; /* Adiciona cursor pointer para interação */
+    transition: background-color 0.3s ease;
+  }
+  
+  .selected-day {
+    background-color: lightgray; /* Cor de fundo cinza claro */
+    color: black; /* Cor do texto */
+    border-radius: 10%; /* Bordas arredondadas */
+  }
+  
+  .day:hover {
+    background-color: #f0f0f0; /* Fundo cinza claro ao passar o mouse */
+  }
+  
+  .num-dates {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 10px 0;
+  }
+  
+  .active-day {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #2ECC71;
+    position: relative;
+    margin: 5px;
+  }
+  
+  .white {
+    color: white;
+  }
+  
+  .event-indicator {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #2980B9;
+    position: relative;
+    margin: 5px;
+  }
+  
+  .two {
+    margin: 10px;
+  }
+  
+  .grey {
+    color: #AAAAB1;
+  }
+  
+  .calendar-left {
+    width: 300px;
+    height: 500px;
+    border-radius: 20px 0 0 20px;
+    background-color: #2ECC71;
+    color: white;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hamburger {
+    margin-bottom: 20px;
+  }
+  
+  .burger-line {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 15%;
+    margin: 3px 0;
+  }
+  
+  .num-date {
+    font-size: 150px;
+    font-weight: 700;
+    margin: 20px 0;
+  }
+  
+  .days {
+    width: 90%;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  
+  .day {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .current-events {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .posts {
+    text-decoration: underline dotted;
+  }
+  
+  .posts:hover {
+    color: #27e879 !important;
+  }
+  
+  .create-event {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .event-line {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+  
+  .add-event {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: solid white 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .add {
+    font-size: 25px;
+  }
+  
+  .add:hover, .create-event:hover, .add-event:hover {
+    color: #27e879 !important;
+    border-color: #27e879 !important;
+  }
+  
