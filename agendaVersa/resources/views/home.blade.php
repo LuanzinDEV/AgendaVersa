@@ -7,6 +7,14 @@
     <title>Calendário Dinâmico</title>
 </head>
 <body>
+    <div class="top-bar">
+        <span class="user-name">Olá, {{ $nome }} {{ $sobrenome }}</span> <!-- Exibir o nome do usuário -->
+        <form id="logout-form" action="" method="POST">
+            @csrf
+            <button type="submit" class="logout-btn">Sair</button>
+        </form>
+    </div><!-- top-bar -->
+
     <div class="container">
         <div class="calendar-left">
             <div class="hamburger">
@@ -27,9 +35,11 @@
             </div><!-- current-events -->
 
             <!-- create-event -->
-            <hr class="event-line" />
+            <hr class="event-line" />   
             <div class="create-event">Marcar uma tarefa</div>
-            <div class="add-event"><span class="add">+</span></div><!-- add-event -->
+            <a href="{{ route('tarefa') }}">
+                <div class="add-event"><span class="add">+</span></div>
+            </a>
         </div><!-- calendar-left -->
 
         <div class="calendar-base">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,10 +26,13 @@ class HomeController extends Controller
         // Gerar dias do mês atual
         $dates = $this->generateDatesForMonth($year, $currentMonth);
 
+        // Obter o nome do usuário logado
+        $nome = Auth::user()->nome;
+        $sobrenome = Auth::user()->sobrenome;
         $currentDate = Carbon::now()->format('j');
         $events = ['Day 09 Daily CSS Image']; // Exemplo de eventos
 
-        return view('home', compact('year', 'months', 'dates', 'currentDate', 'events'));
+        return view('home', compact('year', 'months', 'dates', 'currentDate', 'events', 'nome', 'sobrenome'));
     }
 
     private function generateDatesForMonth($year, $month)
@@ -46,5 +50,9 @@ class HomeController extends Controller
         }
 
         return $dates;
+    }
+
+    public function tarefaPage(){
+       return view('tarefa');
     }
 }

@@ -1,23 +1,27 @@
-create database if not exists agendaversa;
+CREATE DATABASE IF NOT EXISTS agendaversa;
 
-use agendaversa;
+USE agendaversa;
 
-create table usuario (
-	id int auto_increment primary key not null,
-	nome varchar(45) not null,
-    sobrenome varchar(100) not null,
-    email varchar(140) unique not null,
-    senha varchar(255) not null,
-    created_at timestamp default CURRENT_TIMESTAMP,
-    updated_at timestamp default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP
+CREATE TABLE usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    nome VARCHAR(45) NOT NULL,
+    sobrenome VARCHAR(100) NOT NULL,
+    email VARCHAR(140) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-create table tarefa(
-	id int auto_increment primary key not null,
-	titulo varchar(45) not null,
-    descricao varchar(100),
-    hora_inicio datetime,
-    hora_fim datetime,
-    created_at timestamp default CURRENT_TIMESTAMP,
-    updated_at timestamp default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP
+CREATE TABLE tarefa (
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    titulo VARCHAR(45) NOT NULL,
+    descricao VARCHAR(100),
+    hora_inicio DATETIME,
+    hora_fim DATETIME,
+    usuario_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );
+
+CREATE INDEX idx_usuario_id ON tarefa(usuario_id);

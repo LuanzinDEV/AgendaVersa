@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 
 class UsuarioModel extends Authenticatable
@@ -11,7 +12,6 @@ class UsuarioModel extends Authenticatable
     use HasFactory;
 
     protected $table = 'usuario';
-    public $timestamps = false;
 
     protected $fillable = [
         'nome',
@@ -20,13 +20,19 @@ class UsuarioModel extends Authenticatable
         'senha'
     ];
 
-    protected $hidden = [
-        'senha',
-    ];
-
+    /**
+     * Verifica se a senha fornecida corresponde à senha armazenada.
+     *
+     * @param  string  $senha
+     * @return bool
+     */
     public function verificarSenha($senha)
     {
         return Hash::check($senha, $this->senha);
     }
-}
 
+    public function tarefas()
+    {
+        return $this->hasMany(TarefasModel::class, 'usuario_id');
+    }
+}
