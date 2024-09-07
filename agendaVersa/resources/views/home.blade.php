@@ -16,22 +16,22 @@
             </div><!-- hamburger -->
 
             <div class="num-date">{{ $currentDate }}</div><!-- num-date -->
-            <div class="day">{{ \Carbon\Carbon::now()->format('l') }}</div><!-- day -->
-            <div class="current-events">Current Events
+            <div class="current-events">Proximas tarefas
                 <br/>
                 <ul>
                     @foreach ($events as $event)
                         <li>{{ $event }}</li>
                     @endforeach
                 </ul>
-                <span class="posts">See post events</span>
+                <span class="posts">Ver todas as tarefas</span>
             </div><!-- current-events -->
 
-            <div class="create-event">Create an Event</div><!-- create-event -->
+            <!-- create-event -->
             <hr class="event-line" />
+            <div class="create-event">Marcar uma tarefa</div>
             <div class="add-event"><span class="add">+</span></div><!-- add-event -->
         </div><!-- calendar-left -->
-        
+
         <div class="calendar-base">
             <div class="year">{{ $year }}</div><!-- year -->
 

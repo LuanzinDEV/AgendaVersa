@@ -50,11 +50,11 @@ body {
   }
   
   .triangle-left:hover {
-    border-right: 10px solid #2ECC71;
+    border-right: 10px solid #434444;
   }
   
   .triangle-right:hover {
-    border-left: 10px solid #2ECC71;
+    border-left: 10px solid #434444;
   }
   
   .months {
@@ -71,12 +71,12 @@ body {
   }
   
   .month-color {
-    color: #27AE60; /* Destaca o mês atual com uma cor verde */
+    color: #000; /* Destaca o mês atual com uma cor verde */
     font-weight: bold; /* Pode adicionar negrito ou outro estilo */
   }
   
   .month-hover:hover {
-    color: #27e879 !important; /* Estilo ao passar o mouse sobre os meses */
+    color: #383838 !important; /* Estilo ao passar o mouse sobre os meses */
   }
   
   .month-line {
@@ -117,7 +117,7 @@ body {
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background-color: #2ECC71;
+    background-color: #000;
     position: relative;
     margin: 5px;
   }
@@ -147,7 +147,7 @@ body {
     width: 300px;
     height: 500px;
     border-radius: 20px 0 0 20px;
-    background-color: #2ECC71;
+    background-color: #000;
     color: white;
     padding: 20px;
     position: relative;
@@ -197,10 +197,13 @@ body {
   }
   
   .posts:hover {
-    color: #27e879 !important;
+    cursor: pointer;
+    color: #676b6b !important;
   }
   
   .create-event {
+    padding: 5px;
+    border: none;
     font-size: 18px;
     margin-bottom: 20px;
   }
@@ -223,10 +226,148 @@ body {
   
   .add {
     font-size: 25px;
+    cursor: pointer;
   }
   
-  .add:hover, .create-event:hover, .add-event:hover {
-    color: #27e879 !important;
-    border-color: #27e879 !important;
+  .add:hover, .add-event:hover {
+    color: #434444 !important;
+    border-color: #434444 !important;
+  }
+
+@media (max-width: 1450px) {
+    body {
+      width: 80%;
+    }
+  
+    .calendar-base, .calendar-left {
+      width: 90%;
+      height: auto;
+  
+    .calendar-left {
+      width: 250px; 
+    }
+  
+    .num-date {
+      font-size: 120px; 
+    }
+  
+    .day {
+      font-size: 16px; 
+    }
+  
+    .year {
+      font-size: 28px; 
+    }
+  
+    .months {
+      margin: 8px 0; 
+    }
+  
+    .month-hover {
+      margin: 0 5px; 
+    }
+  
+    .active-day {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .calendar-base {
+      height: 450px; 
+    }
+  
+    .create-event {
+      font-size: 16px; 
+    }
+    
+    .add-event {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%; 
+    }
+    
+    .add {
+      font-size: 20px; 
+    }
+    
+    .event-line {
+      width: 85%;
+    }
   }
   
+  @media (max-width: 768px) {
+    body {
+      width: 90%; 
+      margin: 20px auto; 
+    }
+  
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .calendar-base, .calendar-left {
+      width: 100%; 
+      height: auto;
+      margin-bottom: 20px; 
+    }
+  
+    .calendar-left {
+      border-radius: 20px; 
+    }
+  
+    .num-date {
+      font-size: 100px; 
+    }
+  
+    .day {
+      font-size: 16px; 
+    }
+  
+    .year {
+      font-size: 24px; 
+    }
+  
+    .months {
+      margin: 5px 0;
+    }
+  
+    .day {
+      width: calc(100% / 7);
+      margin: 2px 0;
+    }
+  
+    .active-day {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .event-line {
+      width: 100%;
+    }
+    
+    .create-event {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .num-date {
+      font-size: 80px; 
+    }
+  
+    .day {
+      font-size: 14px;
+    }
+  
+    .calendar-base, .calendar-left {
+      height: auto; 
+    }
+  
+    .active-day {
+      width: 25px;
+      height: 25px;
+    }
+ }
+
+ 
