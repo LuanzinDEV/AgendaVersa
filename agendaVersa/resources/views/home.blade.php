@@ -21,11 +21,6 @@
             <div class="num-date">{{ $currentDayFormatted }}</div><!-- num-date -->
             <div class="current-events">
                 <strong>Tarefas do dia selecionado</strong><br/>
-                <form action="{{ route('processarDataSelecionada') }}" class="oculto" method="POST">
-                    @csrf
-                    <input type="hidden" name="dataSelecionada" id="dataSelecionada" value="{{ $currentDay }}">
-                    <button class="btnViewTarefas">Ver tarefas data marcada</button>
-                </form>
                 <ul>
                     @foreach ($tarefas as $tarefa)
                         @php
@@ -36,10 +31,18 @@
                         @if ($horaInicioFormatada == request('dataSelecionada'))
                         
                         <li>{{ $tarefa->titulo }}</li>
+                        <span class="descricao">{{ $tarefa->descricao }}</span>
                         @endif
                     @endforeach
                 
                 </ul>
+                
+                <form action="{{ route('processarDataSelecionada') }}" class="oculto" method="POST">
+                    @csrf
+                    <input type="hidden" name="dataSelecionada" id="dataSelecionada" value="{{ $currentDay }}">
+                    <button class="btnViewTarefas">Ver tarefas data marcada</button>
+                </form>
+
                 <span class="posts">Ver todas as tarefas</span>
                 
             </div><!-- current-events -->
@@ -83,6 +86,5 @@
     </div><!-- container -->
 
     <script src="{{ url('assets/js/home.js') }}"></script>
-    @dd(request('dataSelecionada'));
 </body>
 </html>

@@ -21,13 +21,14 @@ Route::get('/home', [HomeController::class, 'showCalendar'])->name('home')->midd
 // Exibir a página de tarefas
 Route::get('/tarefas', [HomeController::class, 'tarefaPage'])->name('tarefa');
 
-// Página de cadastrar tarefa
+// Processa o cadastrar tarefa
 Route::post('/tarefa/registrar', [TarefaController::class, 'store'])->name('registrarTarefa');
 
 // Processar a data selecionada do calendário (se necessário)
 Route::post('/processar-data-selecionada', [HomeController::class, 'processarDataSelecionada'])->name('processarDataSelecionada');
 
+//faz o logout
 Route::post('/logout', function () {
     Auth::logout();
-    return redirect('/'); // Redireciona para a página inicial ou outra página desejada
+    return redirect('/');
 })->name('logout');

@@ -6,15 +6,15 @@ body {
   }
   
   .container {
-    padding-top: 200px;
+    padding-top: 100px;
     display: flex;
     justify-content: space-between;
   }
   
   .calendar-base {
     width: 70%;
-    height: 500px;
-    border-radius: 20px;
+    height: 70vh;
+    border-radius: 0px 20px 20px 0;
     background-color: white;
     position: relative;
     z-index: 1;
@@ -146,7 +146,7 @@ body {
   
   .calendar-left {
     width: 300px;
-    height: 500px;
+    height: 70vh;
     border-radius: 20px 0 0 20px;
     background-color: #000;
     color: white;
@@ -197,13 +197,28 @@ body {
     margin-bottom: 20px;
   }
 
-  .current-events ul{
-    flex-wrap: wrap;
-    align-items: flex-start;
+  .current-events ul {
+    list-style-type: none; /* Remove marcadores de lista */
+    padding: 0;
+    margin: 0;
+    word-wrap: break-word; /* Quebra de palavras */
+    max-width: 260px; /* Ajusta a largura máxima para 100% do contêiner pai */
+    overflow: hidden; /* Garante que o texto não ultrapasse o contêiner */
     display: flex;
     flex-direction: column;
-    
-  }
+    align-items: flex-start;
+}
+
+.current-events .descricao {
+    word-wrap: break-word; /* Quebra de palavras */
+    padding: 5px;
+    margin: 5px;
+    color: #AAAAB1;
+    font-size: 12px;
+    max-width: 100%; /* Ajusta a largura máxima para 100% do contêiner pai */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+    overflow-wrap: break-word; /* Quebra palavras longas */
+}
   
   .posts {
     text-decoration: underline dotted;
@@ -266,8 +281,8 @@ body {
 }
 
 .btnViewTarefas{
-    margin-top: 10px;
-    background-color: #000; /* Cor vermelha para o botão de sair */
+    margin: 15px;
+    background-color: #000;
     color: white;
     border: 2px solid gainsboro;
     padding: 10px 20px;
@@ -300,14 +315,15 @@ body {
   
     .calendar-base, .calendar-left {
       width: 90%;
-      height: auto;
+      height: 80vh;
   
     .calendar-left {
+      height: 70vh;
       width: 250px; 
     }
   
     .num-date {
-      font-size: 120px; 
+      font-size: 40px; 
     }
   
     .day {
@@ -376,8 +392,12 @@ body {
   
     .calendar-base, .calendar-left {
       width: 100%; 
-      height: auto;
+      height: 70vh;
       margin-bottom: 20px; 
+    }
+
+    .calendar-base{
+      border-radius: 20px;
     }
   
     .calendar-left {
@@ -421,7 +441,7 @@ body {
   
   @media (max-width: 480px) {
     .num-date {
-      font-size: 80px; 
+      font-size: 40px; 
     }
   
     .day {
@@ -429,7 +449,12 @@ body {
     }
   
     .calendar-base, .calendar-left {
-      height: auto; 
+      height: 70vh; 
+      width: 80vw;
+    }
+
+    .calendar-base{
+      border-radius: 20px;
     }
   
     .active-day {

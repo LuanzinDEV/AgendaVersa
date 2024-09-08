@@ -13,6 +13,7 @@ class TarefaController extends Controller
     {
         $usuarioId = Auth::id();
 
+        //verifica se existe tarefa no periodo de tempo selecionado
         $existingTask = TarefasModel::where('usuario_id', $usuarioId)
             ->where(function($query) use ($request) {
                 $query->whereBetween('hora_inicio', [$request->hora_inicio, $request->hora_fim])
