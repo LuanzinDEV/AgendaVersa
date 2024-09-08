@@ -25,9 +25,7 @@ class HomeController extends Controller
         $dates = $this->getDates($startOfMonth, $endOfMonth);
 
         // Obtém as tarefas para o usuário logado
-        $tarefas = TarefasModel::where('usuario_id', Auth::id())
-            ->whereBetween('hora_inicio', [$startOfMonth, $endOfMonth])
-            ->get();
+        $tarefas = TarefasModel::where('usuario_id', Auth::id())->get();
 
         // Define a data atual
         $currentDayFormatted = $request->input('dataSelecionada', Carbon::now()->format('Y-m-d'));

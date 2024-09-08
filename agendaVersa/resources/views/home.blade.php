@@ -32,7 +32,7 @@
                             // Certifique-se de que $tarefa->hora_inicio é um objeto Carbon ou uma string de data válida
                             $horaInicioFormatada = \Carbon\Carbon::parse($tarefa->hora_inicio)->format('Y-m-d');
                         @endphp
-            
+                    
                         @if ($horaInicioFormatada == request('dataSelecionada'))
                         
                         <li>{{ $tarefa->titulo }}</li>
@@ -41,6 +41,7 @@
                 
                 </ul>
                 <span class="posts">Ver todas as tarefas</span>
+                
             </div><!-- current-events -->
 
             <hr class="event-line" />
