@@ -95,4 +95,14 @@ class HomeController extends Controller
     public function tarefaPage(){
         return view('tarefa');
     }
+    
+    public function todasTarefas(){
+        $tarefas = TarefasModel::where('usuario_id', auth()->id())
+                ->orderBy('hora_inicio', 'asc') 
+                ->get();
+
+        return view('todasTarefas', compact('tarefas'));
+
+    }
+    
 }

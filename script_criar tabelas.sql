@@ -16,9 +16,9 @@ CREATE TABLE tarefa (
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     titulo VARCHAR(45) NOT NULL,
     descricao VARCHAR(100),
-    hora_inicio DATETIME,
-    hora_fim DATETIME,
-    usuario_id INT,
+    hora_inicio DATETIME not null,
+    hora_fim DATETIME not null,
+    usuario_id INT not null,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (usuario_id) REFERENCES usuario(id)

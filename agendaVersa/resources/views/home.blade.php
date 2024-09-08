@@ -40,11 +40,13 @@
                 <form action="{{ route('processarDataSelecionada') }}" class="oculto" method="POST">
                     @csrf
                     <input type="hidden" name="dataSelecionada" id="dataSelecionada" value="{{ $currentDay }}">
-                    <button class="btnViewTarefas">Ver tarefas data marcada</button>
+                    <button class="btnViewTarefas">Ver tarefas da data selecionada</button>
                 </form>
 
-                <span class="posts">Ver todas as tarefas</span>
-                
+                <a href="{{ route('verTodasTarefas') }}" class="allTask">
+                    <span class="posts">Ver todas as tarefas</span>
+                </a>
+    
             </div><!-- current-events -->
 
             <hr class="event-line" />

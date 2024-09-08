@@ -27,6 +27,10 @@ Route::post('/tarefa/registrar', [TarefaController::class, 'store'])->name('regi
 // Processar a data selecionada do calendário (se necessário)
 Route::post('/processar-data-selecionada', [HomeController::class, 'processarDataSelecionada'])->name('processarDataSelecionada');
 
+//Ir para a pagina de visualizar todas as tarefas do usuario
+
+Route::get('/ver-todas-tarefas', [HomeController::class, 'todasTarefas'])->name('verTodasTarefas');
+
 //faz o logout
 Route::post('/logout', function () {
     Auth::logout();

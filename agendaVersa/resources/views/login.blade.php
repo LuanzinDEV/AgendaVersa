@@ -103,8 +103,6 @@
                     @error('senha')
                             <span class="error">{{ $message }}</span>
                     @enderror
-
-                    <a class="password" href="#">Esqueceu a senha?</a>
                     <button class="btn btn-second">Entrar</button>
                 </form>
             </div>

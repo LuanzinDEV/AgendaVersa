@@ -10,6 +10,11 @@ body {
     display: flex;
     justify-content: space-between;
   }
+
+  .allTask{
+    color: white;
+    text-decoration: none;
+  }
   
   .calendar-base {
     width: 70%;
