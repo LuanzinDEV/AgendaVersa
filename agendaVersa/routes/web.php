@@ -18,10 +18,16 @@ Route::post('/registrar', [RegistroController::class, 'create'])->name('registra
 // Página inicial após o login, exibindo o calendário
 Route::get('/home', [HomeController::class, 'showCalendar'])->name('home')->middleware('auth');
 
-//Exibir a pagina de tarefas
+// Exibir a página de tarefas
 Route::get('/tarefas', [HomeController::class, 'tarefaPage'])->name('tarefa');
 
-
-//Pagina de cadastrar tarefa
+// Página de cadastrar tarefa
 Route::post('/tarefa/registrar', [TarefaController::class, 'store'])->name('registrarTarefa');
 
+// Processar a data selecionada do calendário (se necessário)
+Route::post('/processar-data-selecionada', [HomeController::class, 'processarDataSelecionada'])->name('processarDataSelecionada');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/'); // Redireciona para a página inicial ou outra página desejada
+})->name('logout');

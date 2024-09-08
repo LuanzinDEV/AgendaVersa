@@ -3,56 +3,98 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use App\Models\TarefasModel;
 
 class HomeController extends Controller
 {
     public function showCalendar(Request $request)
     {
-        // Pega o ano e mês da requisição ou usa o ano e mês atuais se não fornecido
-        $year = $request->input('year', Carbon::now()->year);
-        $currentMonth = $request->input('month', Carbon::now()->month);
+        // Obtém o mês e ano atual ou usa os passados via request
+        $currentMonth = $request->input('month', Carbon::now()->format('m'));
+        $currentYear = $request->input('year', Carbon::now()->format('Y'));
 
-        // Gerar dados dos meses
-        $months = [];
-        foreach (range(1, 12) as $month) {
-            $months[] = [
-                'name' => Carbon::create()->month($month)->format('M'),
-                'isCurrent' => $month == $currentMonth
-            ];
-        }
+        // Cria uma instância Carbon para o primeiro dia do mês
+        $startOfMonth = Carbon::createFromFormat('Y-m-d', "{$currentYear}-{$currentMonth}-01");
 
-        // Gerar dias do mês atual
-        $dates = $this->generateDatesForMonth($year, $currentMonth);
+        // Calcula o último dia do mês
+        $endOfMonth = $startOfMonth->copy()->endOfMonth();
 
-        // Obter o nome do usuário logado
-        $nome = Auth::user()->nome;
-        $sobrenome = Auth::user()->sobrenome;
-        $currentDate = Carbon::now()->format('j');
-        $events = ['Day 09 Daily CSS Image']; // Exemplo de eventos
+        // Obtém todas as datas do mês
+        $dates = $this->getDates($startOfMonth, $endOfMonth);
 
-        return view('home', compact('year', 'months', 'dates', 'currentDate', 'events', 'nome', 'sobrenome'));
+        // Obtém as tarefas para o usuário logado
+        $tarefas = TarefasModel::where('usuario_id', Auth::id())
+            ->whereBetween('hora_inicio', [$startOfMonth, $endOfMonth])
+            ->get();
+
+        // Define a data atual
+        $currentDayFormatted = $request->input('dataSelecionada', Carbon::now()->format('Y-m-d'));
+
+        return view('home', [
+            'dates' => $dates,
+            'tarefas' => $tarefas,
+            'currentDay' => $currentDayFormatted,
+            'currentDayFormatted' => $currentDayFormatted,
+            'currentMonth' => $currentMonth,
+            'currentYear' => $currentYear, // Corrigido aqui
+            'months' => $this->getMonths($currentMonth),
+            'nome' => Auth::user()->nome,
+            'sobrenome' => Auth::user()->sobrenome,
+        ]);
     }
 
-    private function generateDatesForMonth($year, $month)
+    public function processarDataSelecionada(Request $request)
+    {
+        $dataSelecionada = $request->input('dataSelecionada');
+
+        return redirect()->route('home', ['dataSelecionada' => $dataSelecionada]);
+    }
+
+    private function getDates($startOfMonth, $endOfMonth)
     {
         $dates = [];
-        $startDate = Carbon::create($year, $month, 1);
-        $endDate = $startDate->copy()->endOfMonth();
-        $currentDate = Carbon::now()->format('j');
 
-        for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
+        // Adiciona dias antes do primeiro dia do mês para começar a exibição do calendário
+        $startDate = $startOfMonth->copy()->startOfMonth()->startOfWeek();
+        $endDate = $endOfMonth->copy()->endOfMonth()->endOfWeek();
+
+        while ($startDate->lte($endDate)) {
             $dates[] = [
-                'day' => $date->day,
-                'isActive' => $date->day == $currentDate
+                'day' => $startDate->day,
+                'isActive' => $startDate->between($startOfMonth, $endOfMonth)
             ];
+            $startDate->addDay();
         }
 
         return $dates;
     }
 
+    private function getMonths($currentMonth)
+    {
+        $months = [
+            ['name' => 'Jan', 'value' => '01'],
+            ['name' => 'Fev', 'value' => '02'],
+            ['name' => 'Mar', 'value' => '03'],
+            ['name' => 'Abr', 'value' => '04'],
+            ['name' => 'Mai', 'value' => '05'],
+            ['name' => 'Jun', 'value' => '06'],
+            ['name' => 'Jul', 'value' => '07'],
+            ['name' => 'Ago', 'value' => '08'],
+            ['name' => 'Set', 'value' => '09'],
+            ['name' => 'Out', 'value' => '10'],
+            ['name' => 'Nov', 'value' => '11'],
+            ['name' => 'Dez', 'value' => '12']
+        ];
+
+        return array_map(function($month) use ($currentMonth) {
+            $month['isCurrent'] = $month['value'] === $currentMonth;
+            return $month;
+        }, $months);
+    }
+
     public function tarefaPage(){
-       return view('tarefa');
+        return view('tarefa');
     }
 }

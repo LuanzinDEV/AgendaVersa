@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const yearDisplay = document.querySelector('.year');
     const triangleLeft = document.querySelector('.triangle-left');
     const triangleRight = document.querySelector('.triangle-right');
+    const ocultoValue = document.getElementById('dataSelecionada');
     let currentYear = parseInt(yearDisplay.textContent, 10);
     let currentMonth = [...months].findIndex(el => el.classList.contains('month-color'));
+
     
     let selectedDayElement = document.querySelector('.selected-day');
 
@@ -43,9 +45,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function generateDayLeft(day) {
         const today = day ? new Date(currentYear, currentMonth, day) : new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1; // Janeiro é 0
         const dayOfMonth = today.getDate();
-        const formattedDate = dayOfMonth < 10 ? `0${dayOfMonth}` : `${dayOfMonth}`;
+
+        // Formata o mês e o dia com dois dígitos
+        const formattedMonth = month < 10 ? `0${month}` : `${month}`;
+        const formattedDay = dayOfMonth < 10 ? `0${dayOfMonth}` : `${dayOfMonth}`;
+
+        // Formata a data no padrão MySQL (ano/mês/dia)
+        const formattedDate = `${year}-${formattedMonth}-${formattedDay}`;
         leftNumDate.textContent = formattedDate;
+        ocultoValue.value = formattedDate;
     }
 
     function handleMonthClick(event) {
